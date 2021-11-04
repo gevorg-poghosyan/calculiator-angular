@@ -3,7 +3,7 @@
         <input class="inputText" type="text" [value]="joinArray.join('') + joinElem ">
     </div>
     <div class="itemWraper">
-        <button *ngFor="let item of arr" (click)="calculate(item)" >{{item}}</button>
+        <button  *ngFor="let item of arr" [class.c]="item === 'C' || item === 'back'" (click)="calculate(item)" >{{item}}</button>
     </div>
 </div>
 

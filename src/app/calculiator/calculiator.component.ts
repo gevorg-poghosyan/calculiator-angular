@@ -10,7 +10,7 @@ import { CalcService } from './calc.service';
 export class CalculiatorComponent implements OnInit {
   joinElem : string = '';
   joinArray : any[] = [];
-  arr = ['C','back',1,2,3,'+',4,5,6,'-',7,8,9,'*',0,'='];
+  arr = ['C','back',1,2,3,'+',4,5,6,'-',7,8,9,'*',0,'=','/'];
   
 
   constructor(private calcService : CalcService) { 
