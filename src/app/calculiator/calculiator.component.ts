@@ -10,7 +10,8 @@ import { CalcService } from './calc.service';
 export class CalculiatorComponent implements OnInit {
   joinElem : string = '';
   joinArray : any[] = [];
-  arr = ['C','back',1,2,3,'+',4,5,6,'-',7,8,9,'*',0,'=','/'];
+
+  
   
 
   constructor(private calcService : CalcService) { 
@@ -19,12 +20,30 @@ export class CalculiatorComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  clearLastItem(){
+    this.calcService.clearLastItem();
+    this.joinElem = this.calcService.joinElem;
+    this.joinArray = this.calcService.joinArray;
+  }
+
+  clearCalculator(){
+    this.calcService.clearCalculator()
+    this.joinElem = this.calcService.joinElem;
+    this.joinArray = this.calcService.joinArray;
+  }
+
+  calculateEquation(){
+    this.calcService.calculateEquation()
+    this.joinElem = this.calcService.joinElem;
+    this.joinArray = this.calcService.joinArray;
+  }
 
   calculate(item: any): void {
     this.calcService.calc(item)
     this.joinElem = this.calcService.joinElem;
-    this.joinArray = this.calcService.joinArray;
-   
+    this.joinArray = this.calcService.joinArray; 
 }
+
+
 
 }

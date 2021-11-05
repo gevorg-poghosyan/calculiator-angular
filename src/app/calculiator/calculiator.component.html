@@ -1,9 +1,9 @@
 <div class="wraper">
     <div class="item input">
-        <input class="inputText" type="text" [value]="joinArray.join('') + joinElem ">
+        <input class="inputText" type="text" [value]="joinArray.join('') + joinElem">
     </div>
-        <button class="item clean" (click)="calculate('C')">C</button>
-        <button class="item back" (click)="calculate('back')">&larr;</button>
+        <button class="item clean" (click)="clearCalculator()">C</button>
+        <button class="item back" (click)="clearLastItem()">&larr;</button>
         <button class="item" (click)="calculate('+')">+</button>
         <button class="item" (click)="calculate('-')">-</button>
         <button class="item" (click)="calculate('*')">*</button>
@@ -18,7 +18,7 @@
         <button class="item" (click)="calculate(8)">8</button>
         <button class="item" (click)="calculate(9)">9</button>
         <button class="item zero" (click)="calculate(0)">0</button>
-        <button class="item equal" (click)="calculate('=')">=</button>
+        <button class="item equal" (click)="calculateEquation()">=</button>
        
 </div>
 

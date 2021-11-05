@@ -1,7 +1,7 @@
 
-body {
+/* body {
     background-color: aliceblue;
-}
+} */
 .container {
     text-align: center;
     
@@ -12,10 +12,10 @@ body {
     grid-gap: 2px;
     background-color: #eee;
     max-width: 300px;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 5px;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 30px;
     box-shadow: 2px 2px 6px #333;
 }
  .input{
@@ -45,12 +45,10 @@ button.item:hover{
     background-color: #dcd1d1
 }
 .clean {
-	grid-column: 1/4;
-	background-color: #afc8e6;
+	grid-column: 4/1;
+	background-color: #7b8f8a;
 }
-.back{
 
-}
 .back {
 	grid-column: 4/-1;
 
