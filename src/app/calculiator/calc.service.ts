@@ -92,10 +92,9 @@ export class CalcService {
                  break;
                  case 'string' :
                       
-          if(typeof this.joinArray[this.joinArray.length-1] === 'string'){
+          if(typeof this.joinArray[this.joinArray.length-1] === 'string' && !this.joinElem){
             this.joinArray.splice(this.joinArray.length-1,1, item);
             return
-            
           } 
           this.joinArray.push(+this.joinElem);
                    this.autoCalculate(item)
