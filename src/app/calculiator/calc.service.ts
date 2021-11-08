@@ -48,20 +48,29 @@ export class CalcService {
         this.joinArray.push(item);
     }
 
-    joinNumber(item: number): void {
+    joinNumber(item: number | string): void {
         this.joinElem += item;
     }
 
     calc(item: any) {
         switch (typeof item) {
             case 'number':
-                if (item === 0 && !this.joinElem) {
+                if(this.joinElem ==='0' && item === 0){
                     return
                 }
                 this.joinNumber(item);
+               
                 break;
             case 'string':
-                  if (typeof this.joinArray[this.joinArray.length - 1] === 'string' && !this.joinElem) {
+                if(this.joinElem === '0' && item === '.'){
+                    this.joinNumber(item)
+                    return;
+                }
+                if (!this.joinArray.length && !this.joinElem) {
+                    this.joinArray.push(0);
+                    this.joinArray.push(item);
+                }
+                if (typeof this.joinArray[this.joinArray.length - 1] === 'string' && !this.joinElem) {
                     this.joinArray.splice(this.joinArray.length - 1, 1, item);
                     return
                 }
@@ -97,9 +106,9 @@ export class CalcService {
             this.joinElem = this.joinArray[0].toString();
             this.joinArray = [];
             console.log(this.joinArray);
-            
-            
-         } 
+
+
+        }
         else {
             return
         }
