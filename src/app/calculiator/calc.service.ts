@@ -62,8 +62,10 @@ export class CalcService {
                
                 break;
             case 'string':
-                if(this.joinElem === '0' && item === '.'){
-                    this.joinNumber(item)
+                if(item === '.'){
+                    if(!this.joinElem.includes('.')){
+                        this.joinNumber(item)
+                    } 
                     return;
                 }
                 if (!this.joinArray.length && !this.joinElem) {
