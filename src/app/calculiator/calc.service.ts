@@ -5,97 +5,86 @@ export class CalcService {
     joinElem: string = '';
     joinArray: any[] = [];
 
-    autoCalculate(item: string) {
+
+    autoCalculate(item: string) { // poxel anun@ auto
 
         let prevOperator = this.joinArray.find((elem) => (typeof elem === 'string'));
-
         switch (prevOperator) {
-            case '+':
-                this.joinArray.splice(0, 3, +this.joinArray[0] + +this.joinArray[2]);
-                this.itemPush(item);
-                break
+            case '+': {
+                const calculatedResult = +this.joinArray[0] + +this.joinArray[2];
+                this.setCalculatedResult(item, calculatedResult)
+            }
+                break;
 
-            case '-':
-                this.joinArray.splice(0, 3, +this.joinArray[0] - +this.joinArray[2]);
-                this.itemPush(item);
-                console.log(this.joinArray);
-                break
+            case '-': {
+                const calculatedResult = +this.joinArray[0] - +this.joinArray[2];
+                this.setCalculatedResult(item, calculatedResult)
+            }
+                break;
 
-            case '*':
-                this.joinArray.splice(0, 3, +this.joinArray[0] * +this.joinArray[2]);
-                this.itemPush(item)
+            case '*': {
+                const calculatedResult = +this.joinArray[0] * +this.joinArray[2];
+                this.setCalculatedResult(item, calculatedResult)
+            }
 
-                break
+                break;
 
-            case '/':
-                this.joinArray.splice(0, 3, +this.joinArray[0] / +this.joinArray[2]);
-                this.itemPush(item)
-                break
+            case '/': {
+                const calculatedResult = +this.joinArray[0] / +this.joinArray[2];
+                this.setCalculatedResult(item, calculatedResult)
+            }
+                break;
 
             default:
-
                 this.itemPush(item)
-                console.log(this.joinArray);
-
                 break
 
         }
 
+    }
+
+    private setCalculatedResult(item: any, calcResult: number | string) {
+        const firstOperandIndex = 0;
+        const secondOperandIndex = 2;
+        this.joinArray.splice(firstOperandIndex, secondOperandIndex + 1, calcResult);
+        this.itemPush(item)
     }
 
     itemPush(item: string): void {
         this.joinElem = '';
         this.joinArray.push(item);
+        console.log(this.joinArray);
+
     }
 
     joinNumber(item: number | string): void {
+        if (this.joinElem === '0' && item === 0) {
+            return
+        }
         this.joinElem += item;
     }
 
-    calc(item: any) {
-        switch (typeof item) {
-            case 'number':
-                if(this.joinElem ==='0' && item === 0){
-                    return
-                }
-                this.joinNumber(item);
-               
-                break;
-            case 'string':
-                if(item === '.'){
-                    if(!this.joinElem.includes('.')){
-                        this.joinNumber(item)
-                    } 
-                    return;
-                }
-                if (!this.joinArray.length && !this.joinElem) {
-                    this.joinArray.push(0);
-                    this.joinArray.push(item);
-                }
-                if (typeof this.joinArray[this.joinArray.length - 1] === 'string' && !this.joinElem) {
-                    this.joinArray.splice(this.joinArray.length - 1, 1, item);
-                    return
-                }
+    useAction(item: any) {
 
-                if (this.joinElem) {
-                    this.joinArray.push(+this.joinElem);
-                    this.autoCalculate(item)
-                }
-
+        if (item === '.') {
+            if (!this.joinElem.includes('.')) {
+                this.joinNumber(item)
+            }
+            return;
+        }
+        if (!this.joinArray.length && !this.joinElem) {
+            this.joinArray.push(0);
+            this.joinArray.push(item);
+        }
+        if (typeof this.joinArray[this.joinArray.length - 1] === 'string' && !this.joinElem) {
+            this.joinArray.splice(this.joinArray.length - 1, 1, item);
+            return
         }
 
-    }
-
-    clearCalculator() {
-
-        this.joinArray = [];
-        this.joinElem = '';
-
-    }
-
-    clearLastItem() {
-        this.joinElem = this.joinElem.slice(0, -1);
-        this.joinArray.splice(this.joinArray.length - 1, 1)
+        if (this.joinElem) {
+            this.joinArray.push(+this.joinElem);
+            this.autoCalculate(item)
+        }
     }
 
     calculateEquation() {
@@ -108,7 +97,6 @@ export class CalcService {
             this.joinElem = this.joinArray[0].toString();
             this.joinArray = [];
             console.log(this.joinArray);
-
 
         }
         else {

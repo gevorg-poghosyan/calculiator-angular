@@ -1,25 +1,25 @@
 <div class="wraper">
     <div class="item input">
-        <input class="inputText" type="text" [value]="joinArray.join('') + joinElem">
+        <input readonly class="inputText" type="text" [value]="joinArray.join('') + joinElem">
     </div>
         <button class="item clean" (click)="clearCalculator()">C</button>
         <button class="item back" (click)="clearLastItem()">&larr;</button>
-        <button class="item" (click)="calculate('+')">+</button>
-        <button class="item" (click)="calculate('-')">-</button>
-        <button class="item" (click)="calculate('*')">*</button>
-        <button class="item " (click)="calculate('/')">/</button>
-        <button class="item" (click)="calculate(1)">1</button>
-        <button class="item" (click)="calculate(2)">2</button>
-        <button class="item" (click)="calculate(3)">3</button>
-        <button class="item" (click)="calculate(4)">4</button>
-        <button class="item" (click)="calculate(5)">5</button>
-        <button class="item" (click)="calculate(6)">6</button>
-        <button class="item" (click)="calculate(7)">7</button>
-        <button class="item" (click)="calculate(8)">8</button>
-        <button class="item" (click)="calculate(9)">9</button>
-        <button class="item zero" (click)="calculate(0)">0</button>
-        <button class="item dot" (click)="calculate('.')">.</button>
-        <button class="item equal" (click)="calculateEquation()">=</button>
+        <button class="item" (click)="onInput('+')">+</button>
+        <button class="item" (click)="onInput('-')">-</button>
+        <button class="item" (click)="onInput('*')">*</button>
+        <button class="item " (click)="onInput('/')">/</button>
+        <button class="item" (click)="onInput(1)">1</button>
+        <button class="item" (click)="onInput(2)">2</button>
+        <button class="item" (click)="onInput(3)">3</button>
+        <button class="item" (click)="onInput(4)">4</button>
+        <button class="item" (click)="onInput(5)">5</button>
+        <button class="item" (click)="onInput(6)">6</button>
+        <button class="item" (click)="onInput(7)">7</button>
+        <button class="item" (click)="onInput(8)">8</button>
+        <button class="item" (click)="onInput(9)">9</button>
+        <button class="item zero" (click)="onInput(0)">0</button>
+        <button class="item dot" (click)="onInput('.')">.</button>
+        <button class="item equal" (click)="onInputEquation()">=</button>
        
 </div>
 

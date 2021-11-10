@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CalcService } from './calc.service';
 
 @Component({
@@ -7,43 +7,40 @@ import { CalcService } from './calc.service';
   styleUrls: ['./calculiator.component.css'],
   providers: [CalcService]
 })
-export class CalculiatorComponent implements OnInit {
-  joinElem : string = '';
-  joinArray : any[] = [];
+export class CalculiatorComponent {
+  joinElem: string = '';
+  joinArray: any[] = [];
 
-  
-  
 
-  constructor(private calcService : CalcService) { 
+  constructor(private calcService: CalcService) {
   }
 
-  ngOnInit(): void {
+  clearLastItem() {
+    this.calcService.joinElem = this.joinElem.slice(0, -1);
+    this.calcService.joinArray.splice(this.joinArray.length - 1, 1);
+    this.updateCalculatorValues()
   }
 
-  clearLastItem(){
-    this.calcService.clearLastItem();
-    this.joinElem = this.calcService.joinElem;
-    this.joinArray = this.calcService.joinArray;
+  clearCalculator() {
+    this.calcService.joinArray = [];
+    this.calcService.joinElem = '';
+    this.updateCalculatorValues()
   }
 
-  clearCalculator(){
-    this.calcService.clearCalculator()
-    this.joinElem = this.calcService.joinElem;
-    this.joinArray = this.calcService.joinArray;
-  }
-
-  calculateEquation(){
+  onInputEquation() {
     this.calcService.calculateEquation()
+    this.updateCalculatorValues()
+  }
+
+  onInput(item: any): void {
+    typeof item==='number'? this.calcService.joinNumber(item): this.calcService.useAction(item);
+    this.updateCalculatorValues()
+  }
+
+  updateCalculatorValues() {
     this.joinElem = this.calcService.joinElem;
     this.joinArray = this.calcService.joinArray;
   }
-
-  calculate(item: any): void {
-    this.calcService.calc(item)
-    this.joinElem = this.calcService.joinElem;
-    this.joinArray = this.calcService.joinArray; 
-}
-
 
 
 }
